@@ -1,11 +1,8 @@
-from django.urls import path
-from . import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path("", views.index),
-    path("movie/<int:key_id>/", views.movie),
-    path("tv/<int:key_id>/", views.tv),
-    path("artist/<int:key_id>/", views.artist),
-    path("search", views.search),
-    path("wishlist", views.wishlist),
+    path('admin/', admin.site.urls),
+    path("", include('filmapp.urls')),
+    path("accounts/", include('accounts.urls')),
 ]
