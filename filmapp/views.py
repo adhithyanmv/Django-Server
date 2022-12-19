@@ -641,8 +641,7 @@ def movie(request, key_id):
                 index = userdata.usermovieid.index(key_id)
                 userdata.usermovieid.remove(userdata.usermovieid[index])
                 userdata.save()
-                userdata.usermovietype.remove(userdata.usermovietype[index])
-                userdata.save()
+                
                 userdata.usermoviename.remove(userdata.usermoviename[index])
                 userdata.save()
                 userdata.usermovieimage.remove(userdata.usermovieimage[index])
@@ -655,8 +654,7 @@ def movie(request, key_id):
                 userdata.save()
                 userdata.usermoviename.append(details["mvname"])
                 userdata.save()
-                userdata.usermovietype.append("mv")
-                userdata.save()
+                
                 return render(request, 'movie-details.html', {"moviename" : details["mvname"], "moviedate" : details["releasedate"], "mvdesc" : details["mvdesc"], "runtime" : details["runtime"], "language" : details["mvlanguage"], "genres" : details["genres"], "casts" : details["casts"], "mvpic" : "https://image.tmdb.org/t/p/original" +  details["mvpic"], "mvytlink" : details["mvytlink"], "similar" : similar, "exists" : True})
 
     
@@ -694,8 +692,7 @@ def tv(request, key_id):
                 userdata.save()
                 userdata.usermovieimage.remove(userdata.usermovieimage[index])
                 userdata.save()
-                userdata.usermovietype.remove(userdata.usermovietype[index])
-                userdata.save()
+                
                 return render(request, 'tv-details.html', {"moviename" : details["mvname"], "releasedate" : details["releaseDate"], "lastReleaseDate" : details["lastReleaseDate"], "mvdesc" : details["mvdesc"], "language" : details["mvlanguage"], "genres" : details["genres"], "casts" : details["casts"], "mvpic" : "https://image.tmdb.org/t/p/original" +  details["mvpic"], "mvytlink" : details["mvytlink"], "seasons" : details["number_of_seasons"], "episodes" : details["number_of_episodes"], "tvDetails" : details["tvDetails"], "similar" : similar})
             else:
                 userdata.usermovieid.append(key_id)
@@ -704,8 +701,7 @@ def tv(request, key_id):
                 userdata.save()
                 userdata.usermoviename.append(details["mvname"])
                 userdata.save()
-                userdata.usermovietype.append("tv")
-                userdata.save()
+                
                 return render(request, 'tv-details.html', {"moviename" : details["mvname"], "releasedate" : details["releaseDate"], "lastReleaseDate" : details["lastReleaseDate"], "mvdesc" : details["mvdesc"], "language" : details["mvlanguage"], "genres" : details["genres"], "casts" : details["casts"], "mvpic" : "https://image.tmdb.org/t/p/original" +  details["mvpic"], "mvytlink" : details["mvytlink"], "seasons" : details["number_of_seasons"], "episodes" : details["number_of_episodes"], "tvDetails" : details["tvDetails"], "similar" : similar, "exists" : True})
 
     
@@ -745,7 +741,6 @@ def wishlist(request):
         temp["id"] = userdata.usermovieid[i]
         temp["img"] = userdata.usermovieimage[i]
         temp["mvname"] = userdata.usermoviename[i]
-        temp["type"] = userdata.usermovietype[i]
         arr.append(temp)
 
     wishlist["favs"] = arr
