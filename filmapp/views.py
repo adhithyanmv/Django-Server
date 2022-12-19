@@ -631,7 +631,7 @@ def movie(request, key_id):
         
         # if the row for users fav list not exist
         if not Users.objects.filter(username=request.user.username):
-            Users.objects.create(username=request.user.username, usermoviename=[details["mvname"]], usermovieimage=["https://image.tmdb.org/t/p/original" +  details["mvpic"]], usermovieid=[key_id])
+            Users.objects.create(username=request.user.username, usermoviename=[details["mvname"]], usermovieimage=["https://image.tmdb.org/t/p/original" +  details["mvpic"]], usermovieid=[key_id], usermovietype="n")
             return render(request, 'movie-details.html', {"moviename" : details["mvname"], "moviedate" : details["releasedate"], "mvdesc" : details["mvdesc"], "runtime" : details["runtime"], "language" : details["mvlanguage"], "genres" : details["genres"], "casts" : details["casts"], "mvpic" : "https://image.tmdb.org/t/p/original" +  details["mvpic"], "mvytlink" : details["mvytlink"], "similar" : similar, "exists" : True})
         else:
             # if the user fav row exists and so now check if the user wants to remove or append the movie details to db
@@ -680,7 +680,7 @@ def tv(request, key_id):
         
         # if the row for users fav list not exist
         if not Users.objects.filter(username=request.user.username):
-            Users.objects.create(username=request.user.username, usermoviename=[details["mvname"]], usermovieimage=["https://image.tmdb.org/t/p/original" +  details["mvpic"]], usermovieid=[key_id])
+            Users.objects.create(username=request.user.username, usermoviename=[details["mvname"]], usermovieimage=["https://image.tmdb.org/t/p/original" +  details["mvpic"]], usermovieid=[key_id], usermovietype="n")
             return render(request, 'tv-details.html', {"moviename" : details["mvname"], "releasedate" : details["releaseDate"], "lastReleaseDate" : details["lastReleaseDate"], "mvdesc" : details["mvdesc"], "language" : details["mvlanguage"], "genres" : details["genres"], "casts" : details["casts"], "mvpic" : "https://image.tmdb.org/t/p/original" +  details["mvpic"], "mvytlink" : details["mvytlink"], "seasons" : details["number_of_seasons"], "episodes" : details["number_of_episodes"], "tvDetails" : details["tvDetails"], "similar" : similar, "exists" : True})
         else:
             # if the user fav row exists and so now check if the user wants to remove or append the movie details to db
